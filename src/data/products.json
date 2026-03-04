@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Quantum Pro Wireless Headphones",
+    "price": 249.99,
+    "category": "Audio",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80",
+    "rating": 4.8,
+    "badge": "Best Seller",
+    "description": "Immersive 360° spatial audio with adaptive noise cancellation. 40-hour battery life with rapid charge technology."
+  },
+  {
+    "id": 2,
+    "name": "NovaBand Ultra Smartwatch",
+    "price": 399.99,
+    "category": "Wearables",
+    "image": "https://images.unsplash.com/photo-1546868871-af0de0ae72be?w=400&q=80",
+    "rating": 4.6,
+    "badge": "New",
+    "description": "AMOLED always-on display with titanium body. Advanced health sensors and 14-day battery life."
+  },
+  {
+    "id": 3,
+    "name": "Eclipse 4K Action Camera",
+    "price": 329.99,
+    "category": "Cameras",
+    "image": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&q=80",
+    "rating": 4.7,
+    "badge": null,
+    "description": "Shoot 4K 120fps with HyperStabilization. Waterproof to 30m with dual-screen design."
+  },
+  {
+    "id": 4,
+    "name": "AeroCharge MagSafe Pad",
+    "price": 79.99,
+    "category": "Accessories",
+    "image": "https://images.unsplash.com/photo-1615526675159-e248c68bf0e7?w=400&q=80",
+    "rating": 4.4,
+    "badge": null,
+    "description": "15W fast wireless charging with perfect alignment. Aircraft-grade aluminum base with LED indicator."
+  },
+  {
+    "id": 5,
+    "name": "Zenith Mechanical Keyboard",
+    "price": 189.99,
+    "category": "Peripherals",
+    "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400&q=80",
+    "rating": 4.9,
+    "badge": "Top Rated",
+    "description": "Hot-swappable switches with per-key RGB. Gasket-mounted design for a premium typing feel."
+  },
+  {
+    "id": 6,
+    "name": "Pulse Gaming Mouse",
+    "price": 129.99,
+    "category": "Peripherals",
+    "image": "https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&q=80",
+    "rating": 4.5,
+    "badge": null,
+    "description": "26K DPI optical sensor with zero-click latency. Ultra-lightweight 58g design with PTFE glides."
+  },
+  {
+    "id": 7,
+    "name": "Orion Portable SSD 2TB",
+    "price": 159.99,
+    "category": "Storage",
+    "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80",
+    "rating": 4.7,
+    "badge": "Popular",
+    "description": "2000MB/s read speeds with hardware encryption. IP55 dust and water resistant, pocket-sized build."
+  },
+  {
+    "id": 8,
+    "name": "Vortex Noise-Cancelling Earbuds",
+    "price": 179.99,
+    "category": "Audio",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&q=80",
+    "rating": 4.6,
+    "badge": null,
+    "description": "Adaptive ANC with transparency mode. Custom-tuned drivers delivering studio-grade sound quality."
+  },
+  {
+    "id": 9,
+    "name": "Stellar 27\" 4K Monitor",
+    "price": 549.99,
+    "category": "Displays",
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80",
+    "rating": 4.8,
+    "badge": "Premium",
+    "description": "Nano-IPS panel with 144Hz refresh rate. Factory-calibrated with 98% DCI-P3 coverage."
+  },
+  {
+    "id": 10,
+    "name": "Flux USB-C Hub Pro",
+    "price": 89.99,
+    "category": "Accessories",
+    "image": "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=400&q=80",
+    "rating": 4.3,
+    "badge": null,
+    "description": "12-in-1 connectivity hub with dual HDMI 4K output. 100W pass-through charging with ethernet port."
+  },
+  {
+    "id": 11,
+    "name": "Nebula Smart Speaker",
+    "price": 219.99,
+    "category": "Audio",
+    "image": "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=400&q=80",
+    "rating": 4.5,
+    "badge": "New",
+    "description": "360° room-filling sound with AI voice assistant. Multi-room sync with adaptive EQ technology."
+  },
+  {
+    "id": 12,
+    "name": "Titan Drone Explorer",
+    "price": 899.99,
+    "category": "Cameras",
+    "image": "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=400&q=80",
+    "rating": 4.9,
+    "badge": "Flagship",
+    "description": "8K camera with omnidirectional obstacle avoidance. 45-min flight time with intelligent tracking modes."
+  }
+]
