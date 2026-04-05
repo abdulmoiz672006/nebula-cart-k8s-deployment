@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-deployment
+  namespace: online-store
+  labels:
+    app: online-shop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: online-shop
+  template:
+    metadata:
+      name: online-store-pod
+      namespace: online-store
+      labels:
+        app: online-shop
+    spec:
+      containers:
+      - name: online-store-container
+        image: moiz672006/nebula_cart
+        ports:
+        - containerPort: 5173
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
+
