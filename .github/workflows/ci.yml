@@ -1,4 +1,4 @@
-name: Nebula Cart CI/CD Pipeline
+name: Nebula Cart Production CI
 
 on:
   push:
@@ -7,38 +7,45 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
+  pipeline-execution:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set up Node.js
+    - name: Setup Node.js Environment
       uses: actions/setup-node@v4
       with:
         node-version: '20'
         cache: 'npm'
 
-    - name: Install Dependencies
-      run: npm install
+    - name: Install Project Dependencies
+      run: npm ci
 
-    - name: Build Application
+    - name: Build Application Artifacts
       run: npm run build
 
     - name: Docker Build Check
-      run: docker build -t nebula-cart:test .
+      run: docker build -t nebula-cart:${{ github.sha }} .
 
-    - name: Create Kind Cluster
+    - name: Spin up Local K8s Cluster
       uses: helm/kind-action@v1.10.0
       with:
-        cluster_name: nebula-test-cluster
+        cluster_name: nebula-cluster
+        wait: 120s
 
-    - name: Kubernetes Manifests Validation
+    - name: Deploy and Verify K8s Manifests
       run: |
-        # Wait for nodes to be ready
-        kubectl wait --for=condition=Ready nodes --all --timeout=60s
-        # Apply manifests
+        # Step A: Pehle Namespace banana zaroori hai
+        kubectl apply -f k8s/namespace.yml
+        
+        # Step B: Ab baaki saari files apply karein
         kubectl apply -f k8s/
-        # Show resources for the log/screenshot
-        kubectl get all
+        
+        echo "Waiting for pods to be ready..."
+        # Note: Aapke deployment ka naam 'store-deployment' hai (as per your cat command)
+        kubectl rollout status deployment/store-deployment -n online-store --timeout=90s
+        
+        # Final check for logs
+        kubectl get all -n online-store
