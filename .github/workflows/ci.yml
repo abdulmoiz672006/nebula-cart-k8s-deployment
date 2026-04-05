@@ -1,35 +1,11 @@
-name: Nebula Cart CI/CD Pipeline
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
+- name: Create Kind Cluster
+      uses: helm/kind-action@v1.10.0
       with:
-        node-version: '20'
-        cache: 'npm'
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Build Application
-      run: npm run build
-
-    - name: Docker Build Check
-      run: docker build -t nebula-cart:test .
+        cluster_name: nebula-test-cluster
 
     - name: Kubernetes Manifests Validation
       run: |
-        # Check if k8s files are syntactically correct
-        kubectl apply --dry-run=client -f k8s/
+        # Ab cluster mojood hai, toh validation sahi se hogi
+        kubectl apply -f k8s/
+        kubectl get all
+
