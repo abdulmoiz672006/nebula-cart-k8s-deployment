@@ -1,156 +1,99 @@
-# NebulaCart
+# Nebula Cart - Kubernetes Deployment
 
-> **A premium, futuristic eCommerce storefront** built with React and Vite.
-> Dark neon UI with glassmorphism accents — production-ready, containerised, and Kubernetes-deployable.
-
----
-
-## Project Overview
-
-NebulaCart is a single-page electronics storefront designed for visual impact and clean architecture. It features a curated catalogue of 12 premium products, real-time cart management via React Context, debounced search, category filtering, and a fully responsive layout that looks great from mobile to ultra-wide.
-
-The project ships with a multi-stage Docker build and Kubernetes manifests so it can be deployed anywhere — local KIND clusters, managed cloud Kubernetes, or plain Docker.
+This project is a microservices-based application. I have **forked** this repository from the original source to implement and demonstrate **Kubernetes (K8s)** orchestration and management.
 
 ---
 
-## Tech Stack
+## 🚀 Project Overview
+The main goal of this version is to transition the application from a basic containerized setup to a fully managed Kubernetes environment. 
 
-| Layer        | Technology                          |
-| ------------ | ----------------------------------- |
-| Framework    | React 19 (Vite 7)                   |
-| Styling      | Tailwind CSS v4                     |
-| Icons        | Lucide React                        |
-| State        | React Context + useReducer          |
-| Container    | Docker (multi-stage, Node 20 Alpine)|
-| Orchestration| Kubernetes / KIND                   |
+* **Original Project:** Developed by the Instructor.
+* **My Contribution:** Forked the repository and implemented the complete Kubernetes deployment logic using **Kind (Kubernetes in Docker)**.
+* **Cluster Choice:** Used Kind to create a local cluster for testing production-ready manifest files.
 
 ---
 
-## Quick Start — Local Development
+## 🛠 Prerequisites
+To run this project locally, ensure you have the following installed:
+* **Docker:** To host the containerized services.
+* **Kind:** To create and manage the local Kubernetes cluster.
+* **kubectl:** The command-line tool to interact with the cluster.
+
+---
+
+## 📂 Kubernetes Implementation
+I have added a dedicated `k8s/` directory which includes the following configurations:
+* **Deployments:** To ensure the microservices are self-healing and scalable.
+* **Services:** To manage internal communication via `ClusterIP` and external exposure.
+* **ConfigMaps/Secrets:** To manage environment variables and configurations properly.
+
+---
+
+## 🚀 Deployment Guide (How to Run)
+
+Follow these steps to get the application up and running on your local K8s cluster:
+
+### 1. Clone the Repository
 
 ```bash
-# 1. Install dependencies
-npm install
-
-# 2. Start dev server (http://localhost:5173)
-npm run dev
+git clone https://github.com/abdulmoiz672006/nebula_cart.git
+cd nebula_cart
 ```
 
-The dev server runs on **port 5173** with hot module replacement.
+### 2. Set Up the Kind Cluster
 
----
-
-## Production Build
+Create a new cluster named **nebula-cluster**:
 
 ```bash
-npm run build    # outputs to ./dist
-npm run preview  # preview at http://localhost:5173
+kind create cluster --name nebula-cluster
 ```
 
----
+### 3. Deploy the Manifests
 
-## Docker
-
-### Build the image
+Apply all the configuration files located in the **k8s** folder:
 
 ```bash
-docker build -t nebulacart:latest .
+kubectl apply -f k8s/
 ```
 
-### Run the container
+### 4. Verify the Status
+
+Check if all pods and services are in the **Running** state:
 
 ```bash
-docker run -d -p 5173:5173 --name nebulacart nebulacart:latest
-```
-
-Open **http://localhost:5173** in your browser.
-
-### Stop & remove
-
-```bash
-docker stop nebulacart && docker rm nebulacart
+kubectl get pods
+kubectl get svc
 ```
 
 ---
 
-## Kubernetes Deployment
+## 🌐 How to Access the Application
 
-### Option A — KIND (Kubernetes IN Docker)
+Once the pods are ready, use **Port Forwarding** to access the frontend from your local browser:
 
 ```bash
-# 1. Create a KIND cluster
-kind create cluster --name nebulacart-cluster
-
-# 2. Load the Docker image into KIND
-kind load docker-image nebulacart:latest --name nebulacart-cluster
-
-# 3. Apply manifests
-kubectl apply -f k8s/deployment.yaml
-
-# 4. Verify pods are running
-kubectl get pods -l app=nebulacart
-
-# 5. Port-forward to access the app
-kubectl port-forward svc/nebulacart-service 5173:5173
-
-# Open http://localhost:5173
+# Forwarding the frontend service to local port 8080
+kubectl port-forward svc/frontend-service 8080:80
 ```
 
-### Option B — Any Kubernetes Cluster
+Now open your browser and go to:
 
-```bash
-# Push image to your registry first, then:
-kubectl apply -f k8s/deployment.yaml
-kubectl get pods -l app=nebulacart
-kubectl port-forward svc/nebulacart-service 5173:5173
 ```
-
-### Useful kubectl Commands
-
-```bash
-kubectl get all -l app=nebulacart       # List all resources
-kubectl logs -l app=nebulacart          # View logs
-kubectl describe pod -l app=nebulacart  # Inspect pod details
-kubectl scale deploy nebulacart --replicas=3  # Scale up
-kubectl delete -f k8s/deployment.yaml   # Tear down
+http://localhost:8080
 ```
 
 ---
 
-## Folder Structure
+## 👨‍💻 Key Skills Demonstrated
 
-```
-nebula_cart/
-├── public/                  # Static assets (favicon)
-├── src/
-│   ├── components/          # Reusable UI components
-│   │   ├── CartDrawer.jsx   # Slide-out cart panel
-│   │   ├── CategoryFilter.jsx
-│   │   ├── Footer.jsx
-│   │   ├── HeroBanner.jsx
-│   │   ├── Navbar.jsx
-│   │   ├── ProductCard.jsx
-│   │   ├── ProductGrid.jsx
-│   │   ├── SearchBar.jsx
-│   │   └── SkeletonCard.jsx # Loading placeholder
-│   ├── context/
-│   │   └── CartContext.jsx  # Global cart state (Context + useReducer)
-│   ├── data/
-│   │   └── products.json    # Mock product catalogue
-│   ├── hooks/
-│   │   └── useDebounce.js   # Debounce hook for search
-│   ├── App.jsx              # Root layout
-│   ├── main.jsx             # Entry point
-│   └── index.css            # Tailwind imports + global styles
-├── Dockerfile               # Multi-stage production build
-├── .dockerignore
-├── vite.config.js
-├── package.json
-└── README.md
-```
+- **DevOps Workflow:** Forking and modifying existing codebases for orchestration.  
+- **Infrastructure as Code:** Writing and debugging Kubernetes YAML manifest files.  
+- **Orchestration:** Setting up and managing local clusters with Kind.  
+- **Service Discovery:** Configuring networking and access for multiple microservices.
 
 ---
 
-## License
+## 📄 Acknowledgments
 
-This project is provided as-is for demonstration and learning purposes.
+- **Original application logic:** Provided by the Instructor.  
+- **Kubernetes architecture, manifest creation, deployment strategy, and documentation:** Abdul Moiz.
